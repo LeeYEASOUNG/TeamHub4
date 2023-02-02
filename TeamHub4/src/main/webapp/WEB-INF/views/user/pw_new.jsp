@@ -7,6 +7,30 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>비밀번호찾기 재설정</title>
+	<script src = "<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
+	<script type="text/javascript">
+
+
+	 function checkPw(){
+			var fm = document.frm;
+			var pw = document.getElementById(pw);
+			
+			if(fm.pw.value == ""){
+				alert("비밀번호를 입력해주세요");
+				fm.pw.focus();
+				return;
+			}else if(fm.pw_check.value==""){
+				alert("비밀번호확인란을 입력해주세요");
+				fm.pw_check.focus();
+				return;
+			}else if(fm.pw.value != fm.pw_check.value){
+				alert("비밀번호가 일치하지 않습니다.");
+				fm.pw_check.value ="";
+				fm.pw_check.focus();
+				return;
+			}
+	 }
+	</script>
 	<style>
 		*{
 			margin:0;
@@ -107,12 +131,12 @@
 				<img src="../resources/images/check.png"/>
 			</div><!--img_place-->
 			<p id="p1">비밀번호를 재설정해주세요.</p>
-			<form id="frm" action="pw_new.do" method="post">
+			<form id="frm" name="frm" action="pw_new.do" method="post">
 				<input type="password" id="pw" name="pw" autocomplete="off" required placeholder="비밀번호">
 				<br>
 				<input type="password" id="pw_check" name="pw_check" autocomplete="off" required placeholder="비밀번호 확인">
 				<br>
-				<button value="비밀번호 재설정" id="btn" onclick="check()">비밀번호 재설정</button>
+				<button value="비밀번호 재설정" id="btn" onclick="checkPw()">비밀번호 재설정</button>
 				<input type="hidden" name="mail" value="${mail}">
 			</form>	
 		</div><!--idMatch_place-->

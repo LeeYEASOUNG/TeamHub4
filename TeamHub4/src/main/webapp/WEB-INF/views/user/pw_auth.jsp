@@ -95,7 +95,7 @@
 			<div class="img_place">
 				<img src="../resources/images/check.png"/>
 			</div><!--img_place-->
-			<p id="p1">인증번호를 입력해주세요.</p>
+			<p id="p1">메일로 인증번호가 보내졌습니다.</br>인증번호를 입력해주세요.</p>
 			<form id="frm" action="pw_set.do" method="post">
 				<input type="hidden" name="num" value="${num}">
 				<input type="text" id="email_injeung" name="email_injeung" autocomplete="off" required placeholder="인증번호를 입력하세요.">

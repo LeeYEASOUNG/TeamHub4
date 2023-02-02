@@ -295,10 +295,12 @@ public class UserController {
 			}
 		} //if(vo != null)
 		else 
-		{
+		{	
+			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("user/pwFind"); //비밀번호 찾기로 감
 			return mv;
+			
 		}
 	
 	}
