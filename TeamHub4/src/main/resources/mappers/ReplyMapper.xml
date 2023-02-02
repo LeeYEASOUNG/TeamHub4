@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="project.healingcamp.mapper.replyMapper">
+  	
+<!--   	댓글 작성 -->
+  	<insert id="reply_Insert" parameterType="replyVO">
+  		INSERT INTO replytable(
+		  			reply_idx
+		  		   ,reply_content
+		  		   ,id
+		  		   ,reply_wdate
+		  		   ,reply_ip
+		  		   ,bidx
+		  		   ,uidx
+		  		   ,board_type
+		  	)VALUES(
+		  		   reply_idx_seq.nextval
+		  		  ,#{reply_Content}
+		  		  ,#{id}
+		  		  ,SYSDATE
+		  		  ,#{reply_Ip}
+		  		  ,#{bidx}
+		  		  ,#{uidx}
+			  	  ,#{board_type}
+		  	)
+		  			
+  	</insert>
+  	
+  	
+<!--   	댓글 목록 -->
+  	<select id="reply_list" resultType="replyVO" parameterType="int">
+  		SELECT reply_idx
+			  ,reply_content
+			  ,id
+			  ,reply_wdate
+			  ,bidx
+			  ,uidx
+		  FROM replytable
+		 WHERE bidx = #{bidx}
+		   AND board_type = 0
+  	</select>
+  	
+<!--  상담사게시판 댓글 목록 -->
+  	<select id="counseller_reply_list" resultType="replyVO" parameterType="int">
+  		SELECT reply_idx
+			  ,reply_content
+			  ,id
+			  ,reply_wdate
+			  ,bidx
+			  ,uidx
+		  FROM replytable
+		 WHERE bidx = #{bidx}
+		   AND board_type = 1
+  	</select>
+
+<!-- 댓글 삭제 -->
+	<delete id="deleteByReply" parameterType="replyVO">
+		DELETE replytable 
+		 WHERE reply_idx = #{reply_Idx} 
+	</delete>
+	
+<!-- 	댓글 수정 -->
+	<update id="updateByReply" parameterType="replyVO">
+		UPDATE replytable 
+		   SET reply_content = #{reply_Content} 
+		 WHERE reply_idx = #{reply_idx}
+	</update>
+  </mapper>
